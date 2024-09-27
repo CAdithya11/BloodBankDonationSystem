@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Appointments from './components/Appointments';
+import MyTimePicker from './components/MyTimePicker';
 import ScheduleAppointment from './components/scheduleAppointment';
-import TimePicker from './components/TimePicker';
 import './main.css';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/scheduleAppointment" element={<ScheduleAppointment />} />
           <Route path="/Appointments" element={<Appointments />} />
-          <Route path="/TimePicker" element={<TimePicker />} />
+          <Route path="/MyTimePicker" element={<MyTimePicker />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -43,7 +43,7 @@ function ScheduleAppointment() {
 
   /* Show FlatPicker Dates */
   flatpickr('#datePicker', {
-    disable: fetchedDates,
+    enable: fetchedDates,
     dateFormat: 'Y-m-d',
     defaultDate: fetchedDates[0],
     onChange: (e, dateStr) => {
