@@ -14,7 +14,10 @@ function ScheduleAppointment() {
   const [fetchedLocations, setFetchedLocations] = useState([]);
   const [fetchedDates, setFetchedDates] = useState([]);
   const disabled = [{ time: '08:00:00' }, { time: '09:00:00' }];
+  const appoinment = { location, date, time, status };
   const [fetchedTimes, setFetchedTimes] = useState([]);
+
+  const submitButton = document.querySelector('.AsaSubmit');
 
   const [availableTimes, setAvailableTimes] = useState([]);
 
@@ -84,6 +87,8 @@ function ScheduleAppointment() {
     }
   }, []);
 
+  //Submit button
+
   useEffect(() => {
     fetchLocation();
     if (location !== '') {
@@ -107,7 +112,6 @@ function ScheduleAppointment() {
           alert('Select a time first');
         } else {
           try {
-            const appoinment = { location, date, time, status };
             await AppointmentServices.createAppoinment(appoinment);
             alert('Succusfully created an Appoinment');
             navigate('/Appointments');
@@ -125,7 +129,7 @@ function ScheduleAppointment() {
   return (
     <>
       <form onSubmit={createAnAppoinment}>
-        <div className="title">
+        <div className="Atitle">
           <p>Schedule</p>
           <p>Appointment</p>
         </div>
@@ -150,7 +154,7 @@ function ScheduleAppointment() {
                 );
               })}
             </select>
-            <div className="date">
+            <div className="Adate">
               <input
                 required
                 type="text"
@@ -168,10 +172,9 @@ function ScheduleAppointment() {
                 }}
               />
             </div>
-            <div className="time">
+            <div className="Atime">
               <Select
                 required
-                style={{ width: '200px', fontSize: '20px' }}
                 placeholder="Time"
                 allowClear
                 size="large"
@@ -179,13 +182,20 @@ function ScheduleAppointment() {
                 onChange={getValue}
               />
             </div>
-            <button className="saSubmit" type="submit">
+            <button
+              className={
+                appoinment.location === '' || appoinment.date === '' || appoinment.time === ''
+                  ? 'AsaSubmit'
+                  : 'change-color'
+              }
+              type="submit"
+            >
               Book
             </button>
           </>
         ) : (
           <>
-            <div className="info" />
+            <div className="Ainfo" />
             <p id="infop">You Cannot make appoinments today due to the lack of avaialability of donation camps</p>
           </>
         )}
