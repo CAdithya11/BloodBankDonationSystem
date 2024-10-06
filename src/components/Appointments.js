@@ -1,15 +1,12 @@
+import { Widgets } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import AppointmentServices from '../Service/AppointmentService';
-import { Link } from 'react-router-dom';
-import logo from '../Assets/logo.svg';
+
 import './main.css';
-import menu from '../Assets/menu.svg';
-import dashboardImage from '../Assets/dashboard.svg';
-import AppointmentImage from '../Assets/appointment.svg';
-import donationsImage from '../Assets/donations.svg';
-import bellIcon from '../Assets/notification.svg';
-import avatarIcon from '../Assets/avatar.jpg';
+
 import ScheduleAppointment from './ScheduleAppointment';
+import Sidemenu from './Sidemenu';
+import TopBanner from './TopBanner';
 
 function Appointments() {
   const [fetchedAppointments, setFetchedAppointments] = useState([]);
@@ -32,63 +29,12 @@ function Appointments() {
   return (
     <>
       <div className="Amain">
+        {window.innerWidth > 800 ? <Sidemenu /> : null}
         {
-          <div className="AsideMenu">
-            <div className="AsideMenu-image"></div>
-            <div className="AsideMenu-menu">
-              <div className="Atop">
-                <div className="Alogo">
-                  <img src={logo} alt="logo" />
-                </div>
-                <div className="Amenu">
-                  <img src={menu} alt="menu" />
-                </div>
-                <Link to="/">
-                  <div className="Abox-two Abox">
-                    <img src={dashboardImage} alt="menu Icon" />
-                    <p>Dashboard</p>
-                  </div>
-                </Link>
-                <div className="Abox-one Abox">
-                  <img src={AppointmentImage} alt="menu Icon" />
-                  <p>Appointments</p>
-                </div>
-                <div className="Abox-three Abox">
-                  <img src={donationsImage} alt="menu Icon" />
-                  <p>Donations</p>
-                </div>
-              </div>
-              <div className="bottom"></div>
-            </div>
-          </div>
-        }
-        {
-          <div className="Aappointments">
-            {
-              <>
-                <div className="Alogin">
-                  <div className="D-login-info">
-                    <img id="bellIcon" src={bellIcon} alt="bellIcon" />
-                    <div className="D-profile">
-                      <div className="D-profile-info">
-                        <p className="D-title">Luna Deo</p>
-                        <p className="D-role">Donor</p>
-                      </div>
-                      <img src={avatarIcon} alt="profileImage" />
-                    </div>
-                  </div>
-                </div>
-                <div className="Awelcome">
-                  <div className="AwelcomeImage"></div>
-                  <div className="AwelcomeMessage">
-                    <p className="AmessageHead">Welcome Donor!</p>
-                    <p className="AmessageBody">"Be the reason for someone's heartbeat"</p>
-                  </div>
-                </div>
-              </>
-            }
+          <div className="Aappointments" style={window.innerWidth > 800 ? {} : { padding: '0px' }}>
+            {<TopBanner />}
 
-            <h1>Appointments</h1>
+            <h1 style={Window.innerWidth > 800 ? {} : { fontSize: '30px' }}>Appointments</h1>
             <div className="Aschedule">
               {buttonClicked === false ? (
                 <>

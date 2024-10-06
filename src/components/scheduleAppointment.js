@@ -17,6 +17,8 @@ function ScheduleAppointment() {
   const appoinment = { location, date, time, status };
   const [fetchedTimes, setFetchedTimes] = useState([]);
 
+  const [disable, setDisable] = useState(true);
+
   const submitButton = document.querySelector('.AsaSubmit');
 
   const [availableTimes, setAvailableTimes] = useState([]);
@@ -87,6 +89,16 @@ function ScheduleAppointment() {
     }
   }, []);
 
+  /* Use Effect to controll disable true false */
+
+  useEffect(() => {
+    if (location === null || location === '') {
+      setDisable(true);
+    } else {
+      setDisable(false);
+    }
+  }, [location]);
+
   //Submit button
 
   useEffect(() => {
@@ -128,7 +140,7 @@ function ScheduleAppointment() {
 
   return (
     <>
-      <form onSubmit={createAnAppoinment}>
+      <form style={window.innerWidth > 800 ? {} : { transform: 'scale(0.6)' }} onSubmit={createAnAppoinment}>
         <div className="Atitle">
           <p>Schedule</p>
           <p>Appointment</p>
@@ -156,6 +168,7 @@ function ScheduleAppointment() {
             </select>
             <div className="Adate">
               <input
+                disabled={disable}
                 required
                 type="text"
                 value={date}
